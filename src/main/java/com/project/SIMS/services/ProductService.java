@@ -1,10 +1,10 @@
-package com.project.SIMS.services.Product;
+package com.project.SIMS.services;
 
 import com.project.SIMS.exception.DataIntegrityException;
 import com.project.SIMS.exception.ProductNotFoundException;
 import com.project.SIMS.exception.UsedIdException;
 import com.project.SIMS.model.Product.Product;
-import com.project.SIMS.repo.Product.ProductRepository;
+import com.project.SIMS.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.project.SIMS.controllers;
 
 
-import com.project.SIMS.services.Product.ProductService;
+import com.project.SIMS.services.ProductService;
 import com.project.SIMS.model.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

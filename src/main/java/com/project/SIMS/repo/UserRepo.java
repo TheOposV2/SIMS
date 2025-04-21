@@ -1,4 +1,4 @@
-package com.project.SIMS.repo.Loging;
+package com.project.SIMS.repo;
 
 import com.project.SIMS.model.Logging.Users;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.project.SIMS.repo.Product;
+package com.project.SIMS.repo;
 
 import com.project.SIMS.model.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
