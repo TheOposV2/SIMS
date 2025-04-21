@@ -13,24 +13,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository //Maping for spring that this is repository
 public class ProductRepository {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    JdbcTemplate jdbcTemplate; // using jdbc to connect to db
 
     public List<Product> getALL(){
         return jdbcTemplate.query("SELECT * FROM products"
                 ,BeanPropertyRowMapper.newInstance(Product.class));
     }
 
-
     public Product getByName(String name){
-        return jdbcTemplate.queryForObject("SELECT * FROM products WHERE name = ?"
-                ,BeanPropertyRowMapper.newInstance(Product.class),name);
-    }
-
-    public Product getBySuplyier(int name){
         return jdbcTemplate.queryForObject("SELECT * FROM products WHERE name = ?"
                 ,BeanPropertyRowMapper.newInstance(Product.class),name);
     }
@@ -40,7 +34,7 @@ public class ProductRepository {
         try {
           Product product = jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?"
                  ,BeanPropertyRowMapper.newInstance(Product.class), id);
-            return Optional.of(product);
+            return Optional.of(product); // returning OPTIONAL object because record can be empty or not exist
         }catch (EmptyResultDataAccessException e){
             System.out.println("Element don't exist");
             return Optional.empty();
@@ -49,7 +43,7 @@ public class ProductRepository {
     }
 
     public boolean productExists(int id) {
-        String sql = "SELECT COUNT(*) FROM products WHERE id = ?";
+        String sql = "SELECT COUNT(*) FROM products WHERE id = ?"; // COUNT(*) returns number of unique records
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, id);
         return count != null && count > 0;
     }
@@ -69,7 +63,7 @@ public class ProductRepository {
         return false;
     }
 
-    public boolean updateProduct(Product product){
+    public boolean updateProduct(Product product){ //return tru to give feedback if action on db side was done
         try {
             jdbcTemplate.update("UPDATE products SET" +
                             " name = ? ,description = ? ,quantity = ? " +
@@ -98,7 +92,7 @@ public class ProductRepository {
 
     public List<Product> lowQuantityProducts(int howManny){
         try {
-             return jdbcTemplate.query("SELECT * FROM products WHERE quantity < ?"
+             return jdbcTemplate.query("SELECT * FROM products WHERE quantity =< ?"
                     ,new BeanPropertyRowMapper<>(Product.class), howManny);
         }catch (Exception e){
             e.printStackTrace();

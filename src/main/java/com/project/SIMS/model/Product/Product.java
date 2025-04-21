@@ -4,17 +4,18 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity // Tag in spring/hibernate to determinate hat this class is object stored in DB
 public class Product {
-    @Id
+    @Id // tag for primary key
     private int id;
     private String name;
     private String description;
     private int quantity;
     private float price;
-    @Column(name = "supplier_id")
+    @Column(name = "supplier_id") // mapping supplier_id in class to supplier_id in db column
     private int supplier_id;
 
+    //full constructor
     public Product(int id, String name, String description, int quantity, float price, int supplier_id) {
         this.id = id;
         this.name = name;
@@ -24,9 +25,11 @@ public class Product {
         this.supplier_id = supplier_id;
     }
 
+    // default constructor for spring purposes
     public Product() {
     }
 
+    //Getters and Setters
     public int getSupplier_id() {
         return supplier_id;
     }

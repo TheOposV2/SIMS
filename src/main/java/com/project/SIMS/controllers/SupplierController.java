@@ -1,4 +1,0 @@
-package com.project.SIMS.controllers;
-
-public class SupplierController {
-}

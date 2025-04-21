@@ -12,17 +12,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-@Service
+@Service //Maping for spring that this is service layer
 public class ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+    ProductRepository productRepository; // connecting repository to services
 
-
+   // Get all records logic
    public List<Product> getALL(){
         return productRepository.getALL();
    }
 
+
+   // Function to check if object is not null or don't have improper arguments
     public boolean isProductValid(Product product){
         return( Stream.of(
                 product.getId(),
@@ -36,41 +38,46 @@ public class ProductService {
                 && product.getQuantity() >= 0);
     }
 
+    // Get by id logic
    public Product getProductById(int id) {
        return productRepository.getByID(id)
-               .orElseThrow(() -> new ProductNotFoundException("Product not found"));
+               .orElseThrow(() -> new ProductNotFoundException("Product not found")); // If optional is empty throw exception
    }
 
+   // update logic
    public boolean updateProduct(int id , Product updatedProduct){
-       Product product = getProductById(id);
+       Product product = getProductById(id); // get product to update and invoke check if it isn't null
       // if(!supplierIdExist(updatedProduct.getSupplier_id())) return false; do dodania w services dla suplierów
-       if(isProductValid(updatedProduct)) {
+       if(isProductValid(updatedProduct)) { //if passed body is proper update product in db
            product.setName(updatedProduct.getName());
            product.setDescription(updatedProduct.getDescription());
            product.setPrice(updatedProduct.getPrice());
            product.setQuantity(updatedProduct.getQuantity());
            product.setSupplier_id(updatedProduct.getSupplier_id());
            return productRepository.updateProduct(product);
-       } else return false;
+       } else return false; // fi not return false
    }
 
+   //check if product whit id exist necessary for some functions when getting object from db is waste of memory
    public boolean productExists(int id){
        return productRepository.productExists(id);
    }
 
+
    public boolean addProduct(Product product){
-      if(productExists(product.getId())) throw new UsedIdException("Provide unique ID");
-      if(!isProductValid(product)) throw new DataIntegrityException("Product not valid");
-      return productRepository.addProduct(product);
+      if(productExists(product.getId())) throw new UsedIdException("Provide unique ID"); // check if id is unique
+      if(!isProductValid(product)) throw new DataIntegrityException("Product not valid"); // check if provided is valid
+      return productRepository.addProduct(product); // return true or false if something goes wrong
    }
 
    public boolean deleteProduct(int id){
-       if(!productExists(id)) throw new ProductNotFoundException("Product not found");
+       if(!productExists(id)) throw new ProductNotFoundException("Product not found"); //check if product to delete exist
        return productRepository.deleteProduct(id);
    }
 
+
    public List<Product> lowQuantityProducts(int howManny){
-       return productRepository.lowQuantityProducts(howManny);
+       return productRepository.lowQuantityProducts(howManny); //return list of items with quantity =< howManny
    }
 
 }

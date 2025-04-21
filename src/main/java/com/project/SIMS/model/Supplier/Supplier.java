@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "suppliers")
-public class supplier {
+public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -12,14 +12,14 @@ public class supplier {
     private String contact_email;
     private String phone;
 
-    public supplier(int id, String name, String contact_email, String phone) {
+    public Supplier(int id, String name, String contact_email, String phone) {
         this.id = id;
         this.name = name;
         this.contact_email = contact_email;
         this.phone = phone;
     }
 
-    public supplier() {
+    public Supplier() {
     }
 
     @Override

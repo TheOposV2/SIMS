@@ -8,29 +8,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/product")
+@RestController //Mapping to string that this is controller of endpoints
+@RequestMapping("/product") // forcing that require for this controller have to start with /product path
 public class ProductController {
 
-    @Autowired
+    @Autowired // Dependency injection - connecting controller to services
     ProductService productService;
 
-    @GetMapping("")
+    @GetMapping("") //Mapping GET request to this path
     public List<Product> getALL(){
         return productService.getALL();
-    }
+    } // function invoked when requesting this path
 
     @GetMapping("/{id}")
     public Product getByID(@PathVariable("id") int id){
         return productService.getProductById(id);
     }
-    @PostMapping("")
+
+    @PostMapping("") // Mapping POST request
     public boolean add(@RequestBody Product product){
         return productService.addProduct(product);
     }
-    @PutMapping("/{id}")
-    public boolean update(@PathVariable("id") int id,
-                          @RequestBody Product updatedProduct){
+
+    @PutMapping("/{id}") //Mapping PUT request
+    public boolean update(@PathVariable("id") int id,  // Path viable that will be red from path eg. /product/1 this request with id=1
+                          @RequestBody Product updatedProduct){ // request body this path is waiting for body top be put in request
         return productService.updateProduct(id,updatedProduct);
     }
 
