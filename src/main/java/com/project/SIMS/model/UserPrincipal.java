@@ -1,4 +1,4 @@
-package com.project.SIMS.model.Logging;
+package com.project.SIMS.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,10 +1,9 @@
-package com.project.SIMS.model.Product;
+package com.project.SIMS.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity // Tag in spring/hibernate to determinate hat this class is object stored in DB
+@Table(name = "products")
 public class Product {
     @Id // tag for primary key
     private int id;
@@ -12,8 +11,9 @@ public class Product {
     private String description;
     private int quantity;
     private float price;
-    @Column(name = "supplier_id") // mapping supplier_id in class to supplier_id in db column
-    private int supplier_id;
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 
     //full constructor
     public Product(int id, String name, String description, int quantity, float price, int supplier_id) {
@@ -22,7 +22,9 @@ public class Product {
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.supplier_id = supplier_id;
+        Supplier supplier = new Supplier();
+        supplier.setId(supplier_id);
+        this.supplier = supplier;
     }
 
     // default constructor for spring purposes
@@ -31,12 +33,14 @@ public class Product {
 
     //Getters and Setters
     public int getSupplier_id() {
-        return supplier_id;
+        return supplier != null ? supplier.getId() : 0; // ternary operator (condition ? valueIfTrue : valueIfFalse)
     }
 
     public void setSupplier_id(int supplier_id) {
-        this.supplier_id = supplier_id;
-    }
+        if (this.supplier == null) {
+            this.supplier = new Supplier();
+        }
+        this.supplier.setId(supplier_id);}
 
     public float getPrice() {
         return price;

@@ -1,6 +1,8 @@
-package com.project.SIMS.model.Supplier;
+package com.project.SIMS.model;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "suppliers")
@@ -11,6 +13,8 @@ public class Supplier {
     private String name;
     private String contact_email;
     private String phone;
+    @OneToMany(mappedBy = "supplier")
+    private List<Product> products;
 
     public Supplier(int id, String name, String contact_email, String phone) {
         this.id = id;

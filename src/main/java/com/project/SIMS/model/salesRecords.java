@@ -1,7 +1,6 @@
-package com.project.SIMS.model.SalesRecords;
+package com.project.SIMS.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 
 @Entity

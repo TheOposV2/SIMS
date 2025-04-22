@@ -1,7 +1,7 @@
 package com.project.SIMS.services;
 
-import com.project.SIMS.model.Logging.UserPrincipal;
-import com.project.SIMS.model.Logging.Users;
+import com.project.SIMS.model.UserPrincipal;
+import com.project.SIMS.model.Users;
 import com.project.SIMS.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

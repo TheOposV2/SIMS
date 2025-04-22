@@ -1,6 +1,6 @@
 package com.project.SIMS.repo;
 
-import com.project.SIMS.model.Logging.Users;
+import com.project.SIMS.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

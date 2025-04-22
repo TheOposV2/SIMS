@@ -1,15 +1,16 @@
 package com.project.SIMS.services;
 
-import com.project.SIMS.model.Supplier.Supplier;
+import com.project.SIMS.model.Supplier;
 import com.project.SIMS.repo.SupplierDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class SupplierServices {
 
-    private final SupplierDAO supplierDAO;
+    @Autowired
+    private SupplierDAO supplierDAO;
+    @Autowired
+    private ProductService productService;
 
-    public SupplierServices() {
-        this.supplierDAO = new SupplierDAO();
-    }
 
     public Supplier getSupplierById(int id) {
         Supplier supplier = supplierDAO.findById(id);
@@ -17,6 +18,10 @@ public class SupplierServices {
             throw new RuntimeException("Supplier not found with id: " + id);
         }
         return supplier;
+    }
+
+    public boolean supplierExist(int supplierID){
+        return supplierDAO.supplierExist(supplierID);
     }
 
 }

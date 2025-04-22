@@ -1,4 +1,4 @@
-package com.project.SIMS.model.Logging;
+package com.project.SIMS.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

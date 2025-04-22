@@ -1,6 +1,6 @@
 package com.project.SIMS.repo;
 
-import com.project.SIMS.model.Product.Product;
+import com.project.SIMS.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;

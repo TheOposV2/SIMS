@@ -1,6 +1,6 @@
 package com.project.SIMS.controllers;
 
-import com.project.SIMS.model.Supplier.Supplier;
+import com.project.SIMS.model.Supplier;
 import com.project.SIMS.services.SupplierServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

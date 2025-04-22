@@ -3,8 +3,9 @@ package com.project.SIMS.services;
 import com.project.SIMS.exception.DataIntegrityException;
 import com.project.SIMS.exception.ProductNotFoundException;
 import com.project.SIMS.exception.UsedIdException;
-import com.project.SIMS.model.Product.Product;
+import com.project.SIMS.model.Product;
 import com.project.SIMS.repo.ProductRepository;
+import com.project.SIMS.repo.SupplierDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-@Service //Maping for spring that this is service layer
+@Service //Mapping for spring that this is service layer
 public class ProductService {
 
     @Autowired
     ProductRepository productRepository; // connecting repository to services
+    @Autowired
+    private SupplierDAO supplierDAO;
 
    // Get all records logic
    public List<Product> getALL(){
@@ -47,8 +50,8 @@ public class ProductService {
    // update logic
    public boolean updateProduct(int id , Product updatedProduct){
        Product product = getProductById(id); // get product to update and invoke check if it isn't null
-      // if(!supplierIdExist(updatedProduct.getSupplier_id())) return false; do dodania w services dla suplierów
-       if(isProductValid(updatedProduct)) { //if passed body is proper update product in db
+      if(!supplierDAO.supplierExist(updatedProduct.getSupplier_id())) return false;
+      if(isProductValid(updatedProduct)) { //if passed body is proper update product in db
            product.setName(updatedProduct.getName());
            product.setDescription(updatedProduct.getDescription());
            product.setPrice(updatedProduct.getPrice());

@@ -1,5 +1,6 @@
 package com.project.SIMS;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -22,6 +23,10 @@ public class HibernateUtil {
     //Providing global access to singleton of SessionFactory to get connection/session
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public static Session openSession() {
+        return sessionFactory.openSession();
     }
 }
 
