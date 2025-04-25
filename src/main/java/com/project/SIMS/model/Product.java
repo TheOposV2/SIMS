@@ -2,7 +2,7 @@ package com.project.SIMS.model;
 
 import jakarta.persistence.*;
 
-@Entity // Tag in spring/hibernate to determinate hat this class is object stored in DB
+@Entity // Tag in spring to determinate hat this class is object stored in DB
 @Table(name = "products")
 public class Product {
     @Id // tag for primary key

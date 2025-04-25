@@ -13,7 +13,7 @@ public class SupplierServices {
     @Autowired
     private ProductService productService;
 
-    public Supplier getSupplierByProductId(int id) {
+    public Supplier getSupplierByProductId(int id) { //to do
         Supplier supplier = supplierDAO.findById(id);
         if (supplier == null) {
             throw new RuntimeException("Supplier not found with id: " + id);

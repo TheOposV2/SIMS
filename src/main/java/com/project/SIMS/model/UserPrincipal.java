@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-//clas representing user
+//class representing user
 public class UserPrincipal implements UserDetails {
 
 // privilege granting

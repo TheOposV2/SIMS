@@ -54,7 +54,7 @@ public class ProductService {
        ProductDbtO productDbtO = optionalProductDbtO.orElseThrow(
                () -> new ProductNotFoundException("Product not found"));
 
-       Supplier supplier = supplierDAO.findById(productDbtO.getSupplier_id()); // add optional to supplier
+       Supplier supplier = supplierDAO.findById(productDbtO.getSupplier_id()); //to add optional to supplier
 
        return productMapper.ProductBuilder(productDbtO,supplier);
    }
