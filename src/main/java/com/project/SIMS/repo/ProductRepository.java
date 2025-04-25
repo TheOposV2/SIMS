@@ -1,6 +1,7 @@
 package com.project.SIMS.repo;
 
 import com.project.SIMS.model.Product;
+import com.project.SIMS.model.ProductDbtO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Repository //Maping for spring that this is repository
+@Repository //Mapping for spring that this is repository
 public class ProductRepository {
 
     @Autowired
@@ -30,11 +31,11 @@ public class ProductRepository {
     }
 
 
-    public Optional<Product> getByID(int id){
+    public Optional<ProductDbtO> getByID(int id){
         try {
-          Product product = jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?"
-                 ,BeanPropertyRowMapper.newInstance(Product.class), id);
-            return Optional.of(product); // returning OPTIONAL object because record can be empty or not exist
+            ProductDbtO productDbtO = jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?"
+                 ,BeanPropertyRowMapper.newInstance(ProductDbtO.class), id);
+            return Optional.of(productDbtO); // returning OPTIONAL object because record can be empty or not exist
         }catch (EmptyResultDataAccessException e){
             System.out.println("Element don't exist");
             return Optional.empty();
@@ -63,7 +64,7 @@ public class ProductRepository {
         return false;
     }
 
-    public boolean updateProduct(Product product){ //return tru to give feedback if action on db side was done
+    public boolean updateProduct(Product product){ //return true to give feedback if action on db side was done
         try {
             jdbcTemplate.update("UPDATE products SET" +
                             " name = ? ,description = ? ,quantity = ? " +

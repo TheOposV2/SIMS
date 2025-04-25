@@ -15,22 +15,13 @@ public class Product {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
-    //full constructor
-    public Product(int id, String name, String description, int quantity, float price, int supplier_id) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.quantity = quantity;
-        this.price = price;
-        Supplier supplier = new Supplier();
-        supplier.setId(supplier_id);
-        this.supplier = supplier;
-    }
-
     // default constructor for spring purposes
     public Product() {
     }
 
+    public void setSupplier(Supplier supplier){
+        this.supplier = supplier;
+    }
     //Getters and Setters
     public int getSupplier_id() {
         return supplier != null ? supplier.getId() : 0; // ternary operator (condition ? valueIfTrue : valueIfFalse)

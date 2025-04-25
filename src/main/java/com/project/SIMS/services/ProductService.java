@@ -3,7 +3,10 @@ package com.project.SIMS.services;
 import com.project.SIMS.exception.DataIntegrityException;
 import com.project.SIMS.exception.ProductNotFoundException;
 import com.project.SIMS.exception.UsedIdException;
+import com.project.SIMS.mapper.ProductMapper;
 import com.project.SIMS.model.Product;
+import com.project.SIMS.model.ProductDbtO;
+import com.project.SIMS.model.Supplier;
 import com.project.SIMS.repo.ProductRepository;
 import com.project.SIMS.repo.SupplierDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service //Mapping for spring that this is service layer
@@ -20,6 +24,8 @@ public class ProductService {
     ProductRepository productRepository; // connecting repository to services
     @Autowired
     private SupplierDAO supplierDAO;
+    @Autowired
+    private ProductMapper productMapper;
 
    // Get all records logic
    public List<Product> getALL(){
@@ -43,8 +49,14 @@ public class ProductService {
 
     // Get by id logic
    public Product getProductById(int id) {
-       return productRepository.getByID(id)
-               .orElseThrow(() -> new ProductNotFoundException("Product not found")); // If optional is empty throw exception
+       Optional<ProductDbtO> optionalProductDbtO = productRepository.getByID(id);
+
+       ProductDbtO productDbtO = optionalProductDbtO.orElseThrow(
+               () -> new ProductNotFoundException("Product not found"));
+
+       Supplier supplier = supplierDAO.findById(productDbtO.getSupplier_id()); // add optional to supplier
+
+       return productMapper.ProductBuilder(productDbtO,supplier);
    }
 
    // update logic
