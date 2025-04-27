@@ -2,6 +2,7 @@ package com.project.SIMS.services;
 
 import com.project.SIMS.exception.DataIntegrityException;
 import com.project.SIMS.exception.ProductNotFoundException;
+import com.project.SIMS.exception.SupplierNotFoundException;
 import com.project.SIMS.exception.UsedIdException;
 import com.project.SIMS.mapper.ProductMapper;
 import com.project.SIMS.model.Product;
@@ -12,6 +13,7 @@ import com.project.SIMS.repo.SupplierDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,11 +23,12 @@ import java.util.stream.Stream;
 public class ProductService {
 
     @Autowired
-    ProductRepository productRepository; // connecting repository to services
+    private ProductRepository productRepository; // connecting repository to services
     @Autowired
     private SupplierDAO supplierDAO;
     @Autowired
     private ProductMapper productMapper;
+
 
    // Get all records logic
    public List<Product> getALL(){
@@ -54,7 +57,10 @@ public class ProductService {
        ProductDbtO productDbtO = optionalProductDbtO.orElseThrow(
                () -> new ProductNotFoundException("Product not found"));
 
-       Supplier supplier = supplierDAO.findById(productDbtO.getSupplier_id()); //to add optional to supplier
+       Optional<Supplier> optionalSupplier = supplierDAO
+               .findById(productDbtO.getSupplier_id()); //to add optional to supplier
+       Supplier supplier = optionalSupplier
+               .orElseThrow(() -> new SupplierNotFoundException("Supplier not found"));
 
        return productMapper.ProductBuilder(productDbtO,supplier);
    }
@@ -93,6 +99,10 @@ public class ProductService {
 
    public List<Product> lowQuantityProducts(int howManny){
        return productRepository.lowQuantityProducts(howManny); //return list of items with quantity =< howManny
+   }
+
+   public List<Product> getProductsBySupplier(Supplier supplier){
+        return productRepository.getProductBySupplier(supplier);
    }
 
 }

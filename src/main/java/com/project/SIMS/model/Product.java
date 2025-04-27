@@ -15,14 +15,15 @@ public class Product {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
-    // default constructor for spring purposes
+    // default constructor for hibernate purposes
     public Product() {
     }
 
+    //Getters and Setters
     public void setSupplier(Supplier supplier){
         this.supplier = supplier;
     }
-    //Getters and Setters
+
     public int getSupplier_id() {
         return supplier != null ? supplier.getId() : 0; // ternary operator (condition ? valueIfTrue : valueIfFalse)
     }

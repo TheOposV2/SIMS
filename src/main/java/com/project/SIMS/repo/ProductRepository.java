@@ -2,6 +2,7 @@ package com.project.SIMS.repo;
 
 import com.project.SIMS.model.Product;
 import com.project.SIMS.model.ProductDbtO;
+import com.project.SIMS.model.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,6 +101,17 @@ public class ProductRepository {
             e.printStackTrace();
         }
         return Collections.emptyList();
+    }
+    public List<Product> getProductBySupplier(Supplier supplier){
+        try {
+            return jdbcTemplate.query("SELECT * FROM products RIGHT JOIN suppliers " +
+                            "products.supplier_id = suppliers.id WHERE suplier.id = ?",
+                    new BeanPropertyRowMapper<>(Product.class), supplier.getId());
+
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return  Collections.emptyList();
     }
 
 }

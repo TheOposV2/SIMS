@@ -1,9 +1,14 @@
 package com.project.SIMS.services;
 
+import com.project.SIMS.exception.SupplierNotFoundException;
+import com.project.SIMS.model.Product;
 import com.project.SIMS.model.Supplier;
 import com.project.SIMS.repo.SupplierDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class SupplierServices {
@@ -14,19 +19,16 @@ public class SupplierServices {
     private ProductService productService;
 
     public Supplier getSupplierByProductId(int id) { //to do
-        Supplier supplier = supplierDAO.findById(id);
-        if (supplier == null) {
-            throw new RuntimeException("Supplier not found with id: " + id);
-        }
-        return supplier;
+        Optional<Supplier> optionalSupplier = supplierDAO.findById(id);
+        return optionalSupplier
+                .orElseThrow(() -> new SupplierNotFoundException("Supplier not found"));
     }
 
     public Supplier getSupplierById(int id) {
-        Supplier supplier = supplierDAO.findById(id);
-        if (supplier == null) {
-            throw new RuntimeException("Supplier not found with id: " + id);
-        }
-        return supplier;
+        Optional<Supplier> optionalSupplier = supplierDAO.findById(id);
+        return optionalSupplier
+                .orElseThrow(() -> new SupplierNotFoundException("Supplier not found"));
+
     }
 
     public boolean supplierExist(int supplierID){
@@ -34,3 +36,5 @@ public class SupplierServices {
     }
 
 }
+
+
