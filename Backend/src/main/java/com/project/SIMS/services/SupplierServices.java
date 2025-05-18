@@ -19,9 +19,8 @@ public class SupplierServices {
     private ProductService productService;
 
     public Supplier getSupplierByProductId(int id) { //to do
-        Optional<Supplier> optionalSupplier = supplierDAO.findById(id);
-        return optionalSupplier
-                .orElseThrow(() -> new SupplierNotFoundException("Supplier not found"));
+        Product Product = productService.getProductById(id);
+        return getSupplierById(Product.getSupplier_id());
     }
 
     public Supplier getSupplierById(int id) {

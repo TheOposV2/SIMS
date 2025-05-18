@@ -19,4 +19,8 @@ public class SupplierDAOController {
     public Supplier getSupplier(@PathVariable int id) {
         return supplierService.getSupplierById(id);
     }
-}
+
+    @GetMapping({"/item/{id}"})
+    public Supplier getSupplierByProductId(@PathVariable("id") int ProductId){
+        return supplierService.getSupplierByProductId(ProductId);}
+    }
