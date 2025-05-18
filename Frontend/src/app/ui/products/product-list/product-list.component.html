@@ -1,0 +1,9 @@
+<div class="container">
+  @for (product of products; track product) {
+    <ul>
+    <li>
+      <strong>{{ product.name }}</strong> — ${{ product.price }}
+    </li>
+  </ul>
+}
+</div>

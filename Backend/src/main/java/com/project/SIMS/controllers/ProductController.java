@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //Mapping to string that this is controller of endpoints
-@RequestMapping("/product") // forcing that require for this controller have to start with /product path
+@RequestMapping("/api/product") // forcing that require for this controller have to start with /product path
 public class ProductController {
 
     @Autowired // Dependency injection - connecting controller to services
