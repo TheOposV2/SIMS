@@ -27,8 +27,7 @@ public class AuthController {
             );
 
             if (auth.isAuthenticated()) {
-                // Optional: create JWT here and return
-                return ResponseEntity.ok("Login successful");
+                return ResponseEntity.ok("Login successful");  //jwt token
             }
 
         } catch (Exception e) {

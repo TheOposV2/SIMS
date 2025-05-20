@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //Mapping to string that this is controller of endpoints
-@RequestMapping("/api/product") // forcing that require for this controller have to start with /product path
+@RequestMapping("/api/product") // forcing that require for this controller have to start with /api/product path
 public class ProductController {
 
     @Autowired // Dependency injection - connecting controller to services
@@ -39,6 +39,11 @@ public class ProductController {
     @GetMapping("/low/{howMany}")
     public List<Product> lowQuantityProducts(@PathVariable("howMany") int howMany){
         return productService.lowQuantityProducts(howMany);
+    }
+
+    @GetMapping("/supplier/{supplierId}")
+    public List<Product> getProductsBySupplierId(@PathVariable("supplierId") int supplierId){
+        return productService.getProductsBySupplierId(supplierId);
     }
 
 

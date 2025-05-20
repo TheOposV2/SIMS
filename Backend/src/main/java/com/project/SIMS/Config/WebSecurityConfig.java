@@ -29,18 +29,18 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(Customizer.withDefaults())
-                .csrf(csrf -> csrf.disable())
+                .cors(Customizer.withDefaults()) // cors - Cross-Origin Resource Sharing
+                .csrf(csrf -> csrf.disable()) // csrf - Cross Site Request Forgery
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)) // error handling
                 )
-                .formLogin(AbstractHttpConfigurer::disable)  // Disable form login redirect
-                .httpBasic(Customizer.withDefaults()) // or configure JWT if using
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .formLogin(AbstractHttpConfigurer::disable)  // Disable login redirect tom spring page
+                .httpBasic(Customizer.withDefaults())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  //session based authentication
                 .build();
     }
 
@@ -50,11 +50,11 @@ public class WebSecurityConfig {
 //                .csrf(csrf -> csrf.disable()) //http enabling
 //                .authorizeHttpRequests(auth -> auth
 //                        .requestMatchers("/api/login", "/css/**", "/js/**").permitAll()
-//                        .anyRequest().authenticated()) // rules what can be viewed without and whit logging in
+//                        .anyRequest().authenticated()) // rules what can be viewed without and without authorisation
 //                .formLogin(form -> form
 //                        .defaultSuccessUrl("/product", true)
 //                        .permitAll()) // where to go after logging
-//                .formLogin(AbstractHttpConfigurer::disable) // default spring page
+//                .formLogin(AbstractHttpConfigurer::disable)
 //                .logout(logout -> logout
 //                        .logoutSuccessUrl("/login?logout")
 //                        .permitAll()) // logout rules

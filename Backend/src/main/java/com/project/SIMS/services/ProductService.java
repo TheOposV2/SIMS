@@ -76,7 +76,7 @@ public class ProductService {
            product.setQuantity(updatedProduct.getQuantity());
            product.setSupplier_id(updatedProduct.getSupplier_id());
            return productRepository.updateProduct(product);
-       } else return false; // fi not return false
+       } else return false; // if not return false
    }
 
    //check if product whit id exist necessary for some functions when getting object from db is waste of memory
@@ -101,8 +101,10 @@ public class ProductService {
        return productRepository.lowQuantityProducts(howManny); //return list of items with quantity =< howManny
    }
 
-   public List<Product> getProductsBySupplier(Supplier supplier){
-        return productRepository.getProductBySupplier(supplier);
+   public List<Product> getProductsBySupplierId(int supplierId){
+       if(supplierDAO.supplierExist(supplierId)){ return productRepository.getProductsBySupplierId(supplierId);}
+       throw new SupplierNotFoundException("Supplier not found");
+
    }
 
 }

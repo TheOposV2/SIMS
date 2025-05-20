@@ -5,24 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ecdcf5b-d340-4c01-b51d-0b1d85ded9ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/model/AuthRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/Config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/Config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/Config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/Config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/SupplierDAOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/controllers/SupplierDAOController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/core/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/core/services/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/products/product-list/product-list.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/products/product-list/product-list.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/products/product-list/product-list.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/products/product-list/product-list.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/suppliers/supplier-list/supplier-list.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/suppliers/supplier-list/supplier-list.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/suppliers/supplier-list/supplier-list.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/suppliers/supplier-list/supplier-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/repo/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/repo/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/services/SupplierServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/SIMS/services/SupplierServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/app/core/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/core/services/auth.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +61,7 @@
     "Maven.SIMS [install].executor": "Run",
     "Maven.SIMS [verify].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",

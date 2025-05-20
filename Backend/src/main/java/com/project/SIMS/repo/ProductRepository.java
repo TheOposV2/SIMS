@@ -102,11 +102,11 @@ public class ProductRepository {
         }
         return Collections.emptyList();
     }
-    public List<Product> getProductBySupplier(Supplier supplier){
+    public List<Product> getProductsBySupplierId(int supplierId){
         try {
             return jdbcTemplate.query("SELECT * FROM products RIGHT JOIN suppliers " +
-                            "products.supplier_id = suppliers.id WHERE suplier.id = ?",
-                    new BeanPropertyRowMapper<>(Product.class), supplier.getId());
+                            "products.supplier_id = suppliers.id WHERE supplier.id = ?",
+                    new BeanPropertyRowMapper<>(Product.class), supplierId);
 
         }catch (DataAccessException e){
             e.printStackTrace();

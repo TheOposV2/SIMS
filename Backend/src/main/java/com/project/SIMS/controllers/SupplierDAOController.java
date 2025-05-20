@@ -1,12 +1,10 @@
 package com.project.SIMS.controllers;
 
+import com.project.SIMS.model.Product;
 import com.project.SIMS.model.Supplier;
 import com.project.SIMS.services.SupplierServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/suppliers")
@@ -23,4 +21,17 @@ public class SupplierDAOController {
     @GetMapping({"/item/{id}"})
     public Supplier getSupplierByProductId(@PathVariable("id") int ProductId){
         return supplierService.getSupplierByProductId(ProductId);}
+
+
+    @PostMapping("") // Mapping POST request
+    public boolean add(@RequestBody Supplier supplier){
+        return supplierService.addSupplier(supplier);
+    }
+
+    @PutMapping("/{id}") //Mapping PUT request
+    public boolean update(@PathVariable("id") int id,
+                      @RequestBody Supplier updateSupplier){
+        return supplierService.updateSupplier(updateSupplier);
+    }
+
     }

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class SupplierServices {
@@ -33,6 +35,30 @@ public class SupplierServices {
     public boolean supplierExist(int supplierID){
         return supplierDAO.supplierExist(supplierID);
     }
+
+    public boolean isSupplierValid(Supplier supplier){
+        return( Stream.of(
+                supplier.getId(),
+                supplier.getName(),
+                supplier.getContact_email(),
+                supplier.getPhone()
+        ).noneMatch(Objects::isNull));
+
+    }
+
+
+    public boolean addSupplier(Supplier supplier){
+        if(supplierExist(supplier.getId())){ throw new SupplierNotFoundException("Supplier exist");} //add new exception
+        if(!isSupplierValid(supplier)){ throw new SupplierNotFoundException("Suplier not found"); //Add new exception suoplier not valid
+        supplierDAO.save(supplier);
+        return supplierExist(supplier.getId());
+    }
+
+    public boolean updateSupplier(Supplier supplier){
+        return true;
+    }
+
+
 
 }
 
